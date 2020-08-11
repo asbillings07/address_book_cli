@@ -3,50 +3,29 @@
   phone_numbers:
   - !ruby/object:PhoneNumber
     kind: home
-    number: 123-456-7890
-  addresses:
-  - !ruby/object:Address
+    number: 123-456-4321
+  addresses: []
+  emails:
+  - !ruby/object:EmailAddress
     kind: home
-    street_1: 123 main st.
-    city: villa rica
-    state: ga
-    postal_code: '30127'
+    email: aaron@email.com
   first_name: Aaron
   middle_name: Seth
   last_name: Billings
 - !ruby/object:Contact
-  phone_numbers:
-  - !ruby/object:PhoneNumber
-    kind: work
-    number: 234-567-7890
-  addresses:
-  - !ruby/object:Address
-    kind: home
-    street_1: 3008 east st.
-    city: villa rica
-    state: ga
-    postal_code: '30127'
-  first_name: Rachel
-  middle_name: N
-  last_name: Billings
-- !ruby/object:Contact
   phone_numbers: []
   addresses: []
+  emails: []
   first_name: Amanda
   middle_name: K
   last_name: Billings
 - !ruby/object:Contact
   phone_numbers: []
   addresses: []
-  first_name: Aaron
-  middle_name: R
-  last_name: Roberts
-- !ruby/object:Contact
-  phone_numbers:
-  - !ruby/object:PhoneNumber
-    kind: home
-    number: 123-456-7890
-  addresses: []
-  first_name: Eric
+  emails:
+  - !ruby/object:EmailAddress
+    kind: work
+    email: robert@rbs.com
+  first_name: Robert
   middle_name: A
-  last_name: Roberts
+  last_name: Miles

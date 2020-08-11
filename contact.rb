@@ -1,12 +1,14 @@
 require "./phone_number"
 require "./address"
+require './email_address.rb'
 
 class Contact
-  attr_accessor :first_name, :middle_name, :last_name, :phone_numbers, :addresses
+  attr_accessor :first_name, :middle_name, :last_name, :phone_numbers, :addresses, :emails
   
   def initialize
     @phone_numbers = []
     @addresses = []
+    @emails = []
   end 
   
   def add_phone_number(kind, number)
@@ -14,6 +16,13 @@ class Contact
     phone_number.kind = kind
     phone_number.number = number
     phone_numbers.push(phone_number)
+  end
+
+  def add_email_address(kind, email)
+    email_address = EmailAddress.new
+    email_address.kind = kind
+    email_address.email = email
+    emails.push(email_address)
   end
   
   def add_address(kind, street_1, street_2 = '', city, state, postal_code)
@@ -70,6 +79,11 @@ class Contact
     puts 'Addresses:'
      addresses.each { |address| puts address.to_s('short') }
   end  
+
+  def print_email
+    puts 'Emails:'
+    emails.each { |email| puts email.to_s }
+  end
   
 end  
 

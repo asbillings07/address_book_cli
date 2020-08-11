@@ -36,7 +36,8 @@ class AddressBook
       puts "\n"
       puts "Add phone number or address?"
       puts 'p: Add phone number'
-      puts 'ad: Add address' 
+      puts 'ad: Add address'
+      puts 'em: Add email address'
       puts 'Press any other key to go back'
       response = gets.chomp.downcase
       kind_enum = ['home', 'office', 'work']
@@ -87,7 +88,31 @@ class AddressBook
         print 'Postal/Zip Code: '
         postal_code = gets.chomp
         contact.add_address(address_kind, street_1, street_2, city, state, postal_code )
-        
+      when 'em'
+         print 'email kind? (home, work, office): '
+        email_kind = gets.chomp.downcase
+        # loops until correct kind is entered
+      loop do
+        if kind_enum.one?(email_kind)
+          break
+        else 
+          puts "The kind #{email_kind} isn't allowed \n"
+          print 'email kind? (home, work, office): '
+          email_kind = gets.chomp.downcase
+        end  
+      end
+        print 'Enter an email address (example@email.com): '
+        email_address = gets.chomp.downcase
+        loop do
+          if email_address.match?(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+            break
+          else
+            puts 'Email address does not match the (example@email.com) format \n'
+            print 'Enter an email address (example@email.com): '
+            email_address = gets.chomp
+          end
+        end
+        contact.add_email_address(email_kind, email_address)
       else 
         print "\n"
         break
@@ -138,15 +163,19 @@ class AddressBook
 
     input = gets.chomp.downcase
     case input
-    when 'y' || 'yes'
-      contacts.delete_if { |contact| contact.first_name == person }
-      break
-    when 'n' || 'no'
-      print 'Contact not deleted'
-      print "\n"
-      break
-    end
-  end  
+      when 'y' || 'yes'
+        contacts.delete_if { |contact| contact.first_name == person }
+        break
+      when 'n' || 'no'
+        print 'Contact not deleted'
+        print "\n"
+        break
+      end
+    end  
+  end
+
+  def edit_contact
+    # finish the edit contact method
   end
   
   def run 
@@ -188,6 +217,7 @@ class AddressBook
         puts contact.to_s('full_name')
         contact.print_phone_numbers
         contact.print_address
+        contact.print_email
         puts "\n"
        end  
     print_line   
@@ -233,6 +263,10 @@ class AddressBook
     end 
    print_results("Name search results for (#{search})", results)
   end  
+
+  def find_by_email
+    #complete find by email method
+  end
  
   
   def print_contacts

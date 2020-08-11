@@ -13,7 +13,7 @@ class Address
     address = ''
     address = "#{kind}: #{street_1}., #{city}, #{state} #{postal_code}"
       if street_2
-         address = "#{kind}: #{street_1} #{street_2}., #{city}, #{state} #{postal_code}"
+         address = "#{kind}: #{street_1} #{street_2} #{city}, #{state} #{postal_code}"
        end
      address
   end  
