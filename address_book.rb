@@ -54,8 +54,17 @@ class AddressBook
           phone_kind = gets.chomp.downcase
         end  
       end
-        print 'Enter a phone number: '
+        print 'Enter a phone number (###-###-###): '
         phone_number = gets.chomp
+        loop do
+          if phone_number.match?(/((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}/)
+            break
+          else
+            puts 'Phone number does not match the (###-###-###) format'
+            print 'Enter a phone number: '
+            phone_number = gets.chomp
+          end
+        end
         contact.add_phone_number(phone_kind, phone_number)
       when 'ad'
         print 'Address kind? (Home, Work, etc.): '
