@@ -126,6 +126,7 @@ class AddressBook
       puts 'How would you like to search?'
       puts 'p: Phone number'
       puts 'n: Name'
+      puts 'e: Email'
       puts 'a: Address'
       puts 'Press any other key to go back'
       puts "\n"
@@ -144,6 +145,10 @@ class AddressBook
         print 'Enter an Address: '
         address = gets.chomp.downcase
         find_by_address(address)
+      when 'e'
+        print 'Enter an Email: '
+        email = gets.chomp.downcase
+        find_by_email(email)
       else 
         puts "\n"
         break
@@ -226,6 +231,19 @@ class AddressBook
   def print_line
     puts '-' * 40
   end
+
+        def find_by_email(query)
+        results = []
+        search = query.downcase
+        contacts.each do |contact|
+          contact.emails.each do |email|
+            if email.email.include?(query)
+              results.push(contact) unless results.include?(contact)
+            end  
+        end 
+      end
+      print_results("Phone number search results for (#{query})", results)
+      end
   
   def find_by_phone_number(number)
     results = []
@@ -247,11 +265,13 @@ class AddressBook
       contact.addresses.each do |address|
         if address.to_s('long').include?(search)
           results.push(contact) unless results.include?(contact)
-        end  
+        end
       end
-    end 
+    end
       print_results("Address search results for #{search}", results)
-    end  
+    end
+
+
   
   def find_by_name(name)
     results = []
@@ -264,9 +284,7 @@ class AddressBook
    print_results("Name search results for (#{search})", results)
   end  
 
-  def find_by_email
-    #complete find by email method
-  end
+
  
   
   def print_contacts
